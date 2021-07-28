@@ -1,0 +1,15 @@
+﻿@*明確宣告傳入 Model 型別為 Employee，所以 View 為強型別檢視*@
+@model Employee
+
+@{
+    ViewData["Title"] = "StronglyTypedView";
+}
+
+<h1>StronglyTypedView</h1>
+
+<ul>
+    <li>@Model.Id</li>
+    <li>@Model.Name</li>
+    <li>@Model.Phone</li>
+    <li>@Model.Email</li>
+</ul>

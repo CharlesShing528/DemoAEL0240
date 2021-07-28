@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "PassViewData";
+
+    var emps = (List<Employee>)ViewData["Employees"];
+}
+
+<div class="jumbotron alert-success">
+    <h2>以ViewData傳遞資料</h2>
+</div>
+
+
+<ul>
+    <li>Name : @ViewData["Name"]</li>
+    <li>Age : @((int)ViewData["Age"] + 1)</li>@*除字串外，其須明確轉型*@
+    <li>Single : @ViewData["Single"]</li>
+</ul>
+
+<hr />
+<ul>
+    @*ViewData 有公開 GetEnumerator()方法，故可用foreach存取項目資料*@
+    @foreach (var item in ViewData)
+    {
+        <li>@item.Key, @item.Value</li>
+    }
+</ul>
+
+<hr />
+<ul>
+    @foreach (Employee emp in emps)
+    {
+        <li>@emp.Id, @emp.Name, @emp.Phone, @emp.Email</li>
+    }
+</ul>

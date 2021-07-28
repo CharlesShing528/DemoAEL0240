@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "GridExampleRazor";
+}
+
+<div class="jumbotron bg-info p-3">
+    <h3>Grid System中的版面配置</h3>
+    <p>利用.col-md-1, .col-md-2 ~ .col-md-12進行版面配置</p>
+</div>
+
+<div class="alert alert-info">將版面等分為三欄Card元件</div>
+
+<partial name="_MoviePartial" />
+
+<div class="alert alert-info">將版面等分為兩欄</div>
+<div class="row">
+    <div class="col-md-6"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-6"><partial name="_ArticlePartial" /></div>
+</div>
+
+<div class="alert alert-info">將版面等分為三欄</div>
+<div class="row">
+    <div class="col-md-4"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-4"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-4"><partial name="_ArticlePartial" /></div>
+</div>
+
+<div class="alert alert-info">將版面等分為四欄</div>
+<div class="row">
+    <div class="col-md-3"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-3"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-3"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-3"><partial name="_ArticlePartial" /></div>
+</div>
+
+
+<div class="alert alert-info">將版面分為三欄,但每欄寬度不等</div>
+<div class="row">
+    <div class="col-md-3"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-4"><partial name="_ArticlePartial" /></div>
+    <div class="col-md-5"><partial name="_ArticlePartial" /></div>
+</div>
+
+@section topCSS{
+    <style>
+        div.alert {
+            font-size: larger;
+            font-weight: 900;
+            border: 2px dashed black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .row > div > div {
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+    </style>
+}
+

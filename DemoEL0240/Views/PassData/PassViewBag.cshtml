@@ -1,0 +1,30 @@
+﻿@*開頭處並未使用 @model 指示詞宣告型別
+這個View就會是動態型別檢視，缺點是效能較差
+不支援 IntelliSense 和編譯時期型別檢查。*@
+
+@{
+    ViewData["Title"] = "PassViewBag";
+
+    var emps = (List<Employee>)ViewBag.EmpsList;
+}
+
+<div class="jumbotron alert-success">
+    <h2>以ViewBag傳遞資料</h2>
+</div>
+
+
+<ul>
+    <li>Name : @ViewBag.Nickname</li>
+    <li>Height : @ViewBag.Height</li>
+    <li>Weight : @ViewBag.Weight</li>
+    <li>Married : @ViewBag.Married</li>
+</ul>
+
+<hr />
+
+<ul>
+    @foreach (Employee emp in emps)
+    {
+        <li>@emp.Id, @emp.Name, @emp.Phone, @emp.Email</li>
+    }
+</ul>

@@ -1,0 +1,21 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "AnchorTagHelper";
+    int counter = 1;
+
+}
+
+<h1>AnchorTagHelper</h1>
+
+<div class="alert alert-success">@(counter++). asp-action="About"</div>
+<a asp-action="About">About</a>
+
+<div class="alert alert-success">@(counter++). asp-controller & asp-action</div>
+<a asp-controller="Product"
+   asp-action="Index">Product/Index</a>
+
+
+<div class="alert alert-success">@(counter++). asp-area</div>
+<a asp-area="Blogs"
+   asp-controller="Home"
+   asp-action="About">Area 的 Blogs/Home/About</a>

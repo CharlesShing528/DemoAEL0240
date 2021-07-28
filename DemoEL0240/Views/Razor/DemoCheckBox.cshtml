@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "DemoCheckBox";
+}
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("input[name=Fruit]").click(function () {
+                var Selected = $(this).val();
+                $("input[name=Fruit]").each(function (i) {
+                    if ($(this).val() == Selected) $(this).prop("checked", true);
+                    else $(this).prop("checked", false);
+                });
+            });
+
+        });
+    </script>
+}
+
+<h1>DemoCheckBox</h1>
+
+<form method="post" asp-controller="Home" asp-action="Index">
+    <table>
+        @foreach (var fruit in Model)
+        {
+            <tr>
+                <td>
+                    <input id="@fruit.Value" type="checkbox" name="Fruit" value="@fruit.Value" checked="@fruit.Selected" />
+                </td>
+                <td>
+                    <label for="@fruit.Value">@fruit.Text</label>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <input type="submit" value="Submit" />
+</form>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}

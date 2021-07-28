@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+Controller 傳遞資料給 View 的四種途徑
+@Html.ActionLink(" 以 ViewData 傳遞資料", "PassViewData", "PassData")
+<br />
+
+@Html.ActionLink(" 用 [ViewData] 屬性裝飾 Controller 的 Property屬性", "ViewDataAttribute", "PassData")
+<br />
+
+@Html.ActionLink(" 以 ViewBag 傳遞資料", "PassViewBag", "PassData")
+<br />
+
+@Html.ActionLink(" 以 Model 傳遞資料", "PassModel", "PassData")
+<br />
+@Html.ActionLink("範例5-1 Controller 傳遞資料給 View", "PetShop", "PassData")
+<br />
+
+@Html.ActionLink("以 TempData 傳遞資料", "PassTempData", "PassData")
+<br />
+@Html.ActionLink("建立Model 模型與強型別檢視 ，範例5-2 製作員工通訊錄列表", "EmployeeList", "Employees")
+<br />
+
+
+@Html.ActionLink("強型別檢視-傳送單筆資料", "StronglyTypedView", "PassData")
+<br />
+
+
+
+
+@Html.ActionLink("強型別檢視-以List<Employee> 泛型集合傳送多筆資料", "StronglyTypedViewList", "PassData")
+<br />
+Scaffolding 產出的 CURD 相關檔案及結構
+@Html.ActionLink("範例5-3 以Scaffolding 快速建立 CURD 的資料庫對應程式", "Index", "Friends")
+<br />

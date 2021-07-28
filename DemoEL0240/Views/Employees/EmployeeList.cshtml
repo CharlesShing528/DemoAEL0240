@@ -1,0 +1,54 @@
+﻿@*用 @model指示詞明確宣告傳入 model 物件型別.
+    IEnumerable<DemoEL0240.Models.Employee>會針對傳入的List<Employee>集合公開一個列舉器
+*@
+@model IEnumerable<DemoEL0240.Models.Employee>
+
+@{
+    ViewData["Title"] = "EmployeeList";
+}
+
+<h1>EmployeeList</h1>
+
+@* Anchor Tag Helper
+    <p>
+        <a asp-action="Create">Create New</a>
+        Anchor 超連結中的 asp-action 是指定 Action 動作方法，
+        asp-route-id 是指定路由id參數，是 Anchor Tgag Helper 標籤協助程式語法
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "ViewDataAttribute";
+}
+
+<h1>ViewDataAttribute</h1>
+
+@*用 ViewDataAttribute 類別裝飾 Controller 的 Properties，
+    便能將屬性值在 ViewDataDictionary 中儲存與取出*@
+<ul>
+    <li>Name : @ViewData["Name"]</li>
+    <li>Gender : @ViewData["Gender"]</li>
+    <li>Education : @ViewData["Edu"]</li>
+</ul>

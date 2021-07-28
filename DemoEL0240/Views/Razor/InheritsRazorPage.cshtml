@@ -1,0 +1,14 @@
+﻿@inherits DemoEL0240.RazorPage.CustomRazorPage<dynamic>
+@*  7-7 Step 2 View 以@inherits 繼承自訂 RazorPage 類別*@
+@{
+    ViewData["Title"] = "InheritsRazorPage";
+}
+
+<div class="jumbotron bg-success">
+    <h1>@@Inherits</h1>
+</div>
+
+<p>書籍名稱: @GetBookName()</p>
+<p>ASP.NET Core版本 : @AppVersion</p>
+<p>作者: @Model.Name</p>
+

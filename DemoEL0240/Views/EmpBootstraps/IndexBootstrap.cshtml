@@ -1,0 +1,187 @@
+﻿@model IEnumerable<DemoEL0240.Models.EmpBootstrap>
+
+@{
+    ViewData["Title"] = "Index";
+
+    List<EmpBootstrap> employees = (List<EmpBootstrap>)Model;
+    string jsonEmployees = Newtonsoft.Json.JsonConvert.SerializeObject(employees);
+}
+
+@*<style type="text/css">
+        /*設定Table欄位標題顏色*/
+        th {
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+
+        /*設定Table資料列Hover時的光棒效果*/
+        .table > tbody > tr:hover {
+            background-color: antiquewhite;
+        }
+    </style>*@
+
+@section topCSS{
+    <style type="text/css">
+        /*設定Table欄位標題顏色*/
+        th {
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+
+        /*設定Table資料列Hover時的光棒效果*/
+        .table > tbody > tr:hover {
+            background-color: antiquewhite;
+        }
+    </style>
+}
+@section endJS{
+    <script type="text/javascript">
+        function alertName(name) {
+            alert("你的名字是 :" + name);
+        }
+    </script>
+}
+
+
+<div class="jumbotron bg-success p-3">
+    <h2>員工基本資料</h2>
+</div>
+<!-- class="table              table-bordered       table-striped"
+        套用table 樣式        加上邊框             資料列加上顏色條紋
+    -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <!--Font Awesome-->
+                <i class="fa fa-bars"></i>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                <i class="fa fa-user"></i>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                <i class="fa fa-mobile"></i>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                <i class="fa fa-envelope-square"></i>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                <i class="fa fa-home"></i>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                <i class="fa fa-address-book"></i>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">編輯</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">明細</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">刪除</a>
+                    <button onclick="alertName('@item.Name')" class="btn btn-warning">Alert</button>
+                    <button onclick="showModal(@item.Id)" class="btn btn-info">Modal</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="btn btn-warning">新增員工資料</a>
+</p>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-white bg-info">
+                <h5 class="modal-title" id="modalTitle">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalBodyText">Modal Body Text.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@section topCSS{
+        <style type="text/css">
+            /*設定Table欄位標題顏色*/
+            th {
+                color: white;
+                background-color: black;
+                text-align: center;
+            }
+
+            /*設定Table資料列Hover時的光棒效果*/
+            .table > tbody > tr:hover {
+                background-color: antiquewhite;
+            }
+        </style>
+    }*@
+
+@section Scripts{
+    <script type="text/javascript">
+        //將JSON字串轉JS Array
+        var employees = @Html.Raw(jsonEmployees);
+
+        //Array.prototype.filter() -- https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+        //Array.prototype.find() -- https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+
+        function showModal(id) {
+            //過濾element.Id == id, 回傳符合物件
+            var emp = employees.filter(function (el) { return el.Id == id; });
+            console.log(emp);
+
+            //回傳物件仍為陣列型式
+            var name = emp[0].Name;
+            var mobile = emp[0].Mobile;
+            var email = emp[0].Email;
+            var department = emp[0].Department;
+            var title = emp[0].Title;
+            var data = mobile + ', ' + email + ', ' + department + ', ' + title;
+
+            $('#modalTitle').text('員工編號 : ' + id + ', ' + name);
+            $('#modalBodyText').text(data);
+            $('#myModal').modal('show');
+        }
+    </script>
+}

@@ -1,0 +1,74 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration config
+
+@{
+    ViewData["Title"] = "RazorFunctions";
+}
+
+<div class="jumbotron bg-success">
+    <h1>用@functions宣告Fileds, Properties & Methods</h1>
+</div>
+
+@*用@function 宣告以下 Field、Property、Method*@
+@functions
+{
+
+    public string Name = "asp.net core";
+
+    public string RealName { get; } = "MVC";
+
+    public string GetPhoneNumber()
+    {
+        return "0925-123-123";
+    }
+
+    public string BookTitle()
+    {
+        return @config["Book:Title"] ?? "查無資料";
+    }
+}
+
+
+@*叫用 @functions 成員*@
+<h2>書名 : @BookTitle()</h2>
+<p>筆名 : @Name</p>
+<p>姓名 : @RealName</p>
+<p>電話 : @GetPhoneNumber()</p>
+
+<hr />
+
+
+
+@*在View 定義Razor 樣板*@
+@functions{
+
+    private void PersonInfo()
+    {
+        <div>
+            <h1>@Name</h1>
+            <p>姓名:@RealName , 電話: @GetPhoneNumber()</p>
+        </div>
+    }
+
+    private async Task RenderCard(string name, string brief, string photo)
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="headshot">
+                    <img class="card-img-top" src="~/images/@photo" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@name</h5>
+                    <p class="card-text">@brief</p>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+@{
+    //呼叫 @function 樣板方法
+    PersonInfo();
+
+    await RenderCard("星際大戰", "維達元帥", "Vader.jpg");
+}
