@@ -91,6 +91,12 @@ namespace DemoEL0240
             #endregion
             app.UseEndpoints(endpoints =>
             {
+                //Area註冊必須在default路由前面
+
+                endpoints.MapControllerRoute(
+                    name: "MyBlogs",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 #region ���ѩw�q
                 endpoints.MapControllerRoute(
                     name: "default",
